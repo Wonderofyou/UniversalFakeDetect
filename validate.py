@@ -304,7 +304,6 @@ if __name__ == '__main__':
         loader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=False, num_workers=4)
         ap, r_acc0, f_acc0, acc0, r_acc1, f_acc1, acc1, best_thres = validate(model, loader, find_thres=True)
         print("\n==============================")
-        print(f"📁 Dataset key: {dataset_path.get('key', 'custom')}")
         print(f"📊 Average Precision (AP): {ap*100:.2f}%")
         print(f"🔹 Real Acc (thres=0.5): {r_acc0*100:.2f}%")
         print(f"🔹 Fake Acc (thres=0.5): {f_acc0*100:.2f}%")
