@@ -303,10 +303,15 @@ if __name__ == '__main__':
 
         loader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=False, num_workers=4)
         ap, r_acc0, f_acc0, acc0, r_acc1, f_acc1, acc1, best_thres = validate(model, loader, find_thres=True)
-
-        with open( os.path.join(opt.result_folder,'ap.txt'), 'a') as f:
-            f.write(dataset_path['key']+': ' + str(round(ap*100, 2))+'\n' )
-
-        with open( os.path.join(opt.result_folder,'acc0.txt'), 'a') as f:
-            f.write(dataset_path['key']+': ' + str(round(r_acc0*100, 2))+'  '+str(round(f_acc0*100, 2))+'  '+str(round(acc0*100, 2))+'\n' )
+        print("\n==============================")
+        print(f"📁 Dataset key: {dataset_path.get('key', 'custom')}")
+        print(f"📊 Average Precision (AP): {ap*100:.2f}%")
+        print(f"🔹 Real Acc (thres=0.5): {r_acc0*100:.2f}%")
+        print(f"🔹 Fake Acc (thres=0.5): {f_acc0*100:.2f}%")
+        print(f"✅ Overall Acc (thres=0.5): {acc0*100:.2f}%")
+        print(f"⭐ Best Threshold: {best_thres:.3f}")
+        print(f"🔹 Real Acc (best): {r_acc1*100:.2f}%")
+        print(f"🔹 Fake Acc (best): {f_acc1*100:.2f}%")
+        print(f"✅ Overall Acc (best): {acc1*100:.2f}%")
+        print("==============================\n")
 
